@@ -326,6 +326,15 @@ const academyPersonnel = [
     status: "Training",
     image: "/placeholder.svg?height=100&width=100",
   },
+    {
+    id: 72,
+    name: "Hugo Anderson",
+    rank: "Cadet",
+    badge: "625",
+    division: "Academy",
+    status: "Training",
+    image: "/placeholder.svg?height=100&width=100",
+  },
 ]
 
 export default function AcademyPage() {
