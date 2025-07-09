@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Search, Filter } from "lucide-react"
-import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog"
-import { DialogHeader } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Search, Filter, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 // Real LSPD roster data
 const officers = [
@@ -344,7 +344,6 @@ const officers = [
   },
 ]
 
-// Update rank order to match LSPD hierarchy
 const rankOrder = {
   "Chief of LSPD": 1,
   "Ass. Chief of LSPD": 2,
@@ -376,58 +375,96 @@ interface ImageModalProps {
 }
 
 function ImageModal({ isOpen, onClose, officer }: ImageModalProps) {
+  const [imageError, setImageError] = useState(false)
+
   if (!officer) return null
+
+  const handleImageError = () => {
+    setImageError(true)
+  }
+
+  const handleImageLoad = () => {
+    setImageError(false)
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
+          <DialogTitle className="text-2xl font-semibold text-center">
             {officer.name}
           </DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
+        
+        <div className="space-y-6">
+          {/* Image Container */}
           <div className="flex justify-center">
-            <div className="relative group">
-              <img
-                src={officer.image || "/placeholder.svg"}
-                alt={officer.name}
-                className="w-64 h-64 object-cover rounded-lg shadow-lg"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = 'none'
-                }}
-              />
-              {/* Fallback display when image fails to load */}
-              <div className="w-64 h-64 bg-gray-200 rounded-lg flex items-center justify-center text-4xl font-bold text-gray-500">
-                {officer.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
+            <div className="relative">
+              {!imageError ? (
+                <img
+                  src={officer.image || "/placeholder.svg"}
+                  alt={officer.name}
+                  className="w-80 h-80 object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                />
+              ) : (
+                <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="text-center">
+                    <div className="text-6xl font-bold text-blue-600 mb-2">
+                      {officer.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div className="text-blue-500 text-sm">No Image Available</div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          <div className="text-center space-y-2">
-            <Badge
-              variant={
-                officer.rank === "Chief of Police" || officer.rank === "Chief of LSPD"
-                  ? "default"
-                  : officer.rank === "Deputy Chief" || officer.rank === "Ass. Chief of LSPD"
-                    ? "secondary"
-                    : officer.rank === "Commander" || officer.rank === "Captain"
-                      ? "outline"
-                      : "secondary"
-              }
-            >
-              {officer.rank}
-            </Badge>
-            <div className="text-sm text-gray-600">
-              <div>Badge #{officer.badge}</div>
-              <div>{officer.division} Division</div>
+
+          {/* Officer Details */}
+          <div className="text-center space-y-4">
+            <div className="flex flex-wrap justify-center gap-2">
+              <Badge
+                variant={
+                  officer.rank === "Chief of Police" || officer.rank === "Chief of LSPD"
+                    ? "default"
+                    : officer.rank === "Deputy Chief" || officer.rank === "Ass. Chief of LSPD"
+                      ? "secondary"
+                      : officer.rank === "Commander" || officer.rank === "Captain"
+                        ? "outline"
+                        : "secondary"
+                }
+                className="text-lg px-4 py-2"
+              >
+                {officer.rank}
+              </Badge>
             </div>
-            <Badge variant={officer.status === "Active" ? "default" : "secondary"}>
-              {officer.status}
-            </Badge>
+            
+            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="flex justify-center items-center gap-4">
+                <div className="text-center">
+                  <div className="text-sm text-gray-500">Badge Number</div>
+                  <div className="text-lg font-semibold">#{officer.badge}</div>
+                </div>
+                <div className="h-12 w-px bg-gray-300"></div>
+                <div className="text-center">
+                  <div className="text-sm text-gray-500">Division</div>
+                  <div className="text-lg font-semibold">{officer.division}</div>
+                </div>
+              </div>
+              
+              <div className="flex justify-center">
+                <Badge 
+                  variant={officer.status === "Active" ? "default" : "secondary"}
+                  className={`text-sm px-3 py-1 ${officer.status === "Active" ? "bg-green-500 hover:bg-green-600" : ""}`}
+                >
+                  {officer.status}
+                </Badge>
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>
@@ -473,35 +510,48 @@ export default function RosterPage() {
       <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Department Roster</h1>
-            <p className="text-xl text-blue-100">
-              Meet the dedicated officers serving the Los Santos Police Department
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              LSPD Department Roster
+            </h1>
+            <p className="text-xl text-blue-100 mb-8">
+              Meet the brave men and women who serve and protect Los Santos
             </p>
+            <div className="flex flex-wrap justify-center gap-4 text-blue-100">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span>{officers.filter(o => o.status === "Active").length} Active Officers</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                <span>{divisions.length} Divisions</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Search and Filter */}
+        {/* Search and Filter Section */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Search className="h-5 w-5" />
+              <Search className="w-5 h-5" />
               Search & Filter Officers
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder="Search by name or badge number..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full"
+                  className="pl-10"
                 />
               </div>
               <Select value={rankFilter} onValueChange={setRankFilter}>
-                <SelectTrigger className="w-full md:w-48">
+                <SelectTrigger>
                   <SelectValue placeholder="Filter by rank" />
                 </SelectTrigger>
                 <SelectContent>
@@ -514,7 +564,7 @@ export default function RosterPage() {
                 </SelectContent>
               </Select>
               <Select value={divisionFilter} onValueChange={setDivisionFilter}>
-                <SelectTrigger className="w-full md:w-48">
+                <SelectTrigger>
                   <SelectValue placeholder="Filter by division" />
                 </SelectTrigger>
                 <SelectContent>
@@ -533,21 +583,24 @@ export default function RosterPage() {
         {/* Roster Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredOfficers.map((officer) => (
-            <Card key={officer.id} className="hover:shadow-lg transition-shadow">
+            <Card key={officer.id} className="hover:shadow-lg transition-shadow group">
               <CardContent className="p-6 text-center">
                 <div 
                   className="cursor-pointer hover:scale-105 transition-transform"
                   onClick={() => handleImageClick(officer)}
                 >
-                  <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-transparent hover:ring-blue-500">
+                  <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-transparent group-hover:ring-blue-500 transition-all">
                     <AvatarImage src={officer.image || "/placeholder.svg"} alt={officer.name} />
-                    <AvatarFallback className="text-lg">
+                    <AvatarFallback className="text-lg bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600">
                       {officer.name
                         .split(" ")
                         .map((n) => n[0])
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
+                  <div className="text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                    Click to view details
+                  </div>
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{officer.name}</h3>
                 <div className="space-y-2">
@@ -569,7 +622,10 @@ export default function RosterPage() {
                     <div>Badge #{officer.badge}</div>
                     <div>{officer.division} Division</div>
                   </div>
-                  <Badge variant={officer.status === "Active" ? "default" : "secondary"}>
+                  <Badge 
+                    variant={officer.status === "Active" ? "default" : "secondary"}
+                    className={officer.status === "Active" ? "bg-green-500 hover:bg-green-600 text-white" : ""}
+                  >
                     {officer.status}
                   </Badge>
                 </div>
