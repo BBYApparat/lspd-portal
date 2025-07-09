@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -14,6 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { FileText, AlertTriangle, Car, Users, Building, Calendar, CheckCircle } from "lucide-react"
 
 export default function FormsPage() {
+  // Complaint form state
   const [complaintForm, setComplaintForm] = useState({
     complainantName: "",
     complainantEmail: "",
@@ -26,6 +25,7 @@ export default function FormsPage() {
     description: "",
   })
 
+  // Permit form state
   const [permitForm, setPermitForm] = useState({
     applicantName: "",
     applicantEmail: "",
@@ -38,51 +38,130 @@ export default function FormsPage() {
     duration: "",
   })
 
+  // UI state
   const [complaintSubmitted, setComplaintSubmitted] = useState(false)
   const [permitSubmitted, setPermitSubmitted] = useState(false)
+  const [complaintLoading, setComplaintLoading] = useState(false)
+  const [permitLoading, setPermitLoading] = useState(false)
+  const [complaintError, setComplaintError] = useState("")
+  const [permitError, setPermitError] = useState("")
+  const [caseNumber, setCaseNumber] = useState("")
+  const [applicationNumber, setApplicationNumber] = useState("")
 
-  const handleComplaintSubmit = (e: React.FormEvent) => {
+  // Handle complaint submission
+  const handleComplaintSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log("Complaint submitted:", complaintForm)
-    setComplaintSubmitted(true)
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setComplaintSubmitted(false)
-      setComplaintForm({
-        complainantName: "",
-        complainantEmail: "",
-        complainantPhone: "",
-        officerName: "",
-        officerBadge: "",
-        incidentDate: "",
-        incidentLocation: "",
-        complaintType: "",
-        description: "",
+    setComplaintLoading(true)
+    setComplaintError("")
+    
+    try {
+      // Use your actual deployment URL here
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwmgaRv1YiyvN7I34wPBwmnGLyAOJPGbyWQy7ufSybXtsVJ2ob15PFMXsT_GCS36AQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          type: 'complaint',
+          complainantName: complaintForm.complainantName,
+          complainantEmail: complaintForm.complainantEmail,
+          complainantPhone: complaintForm.complainantPhone,
+          officerName: complaintForm.officerName,
+          officerBadge: complaintForm.officerBadge,
+          incidentDate: complaintForm.incidentDate,
+          incidentLocation: complaintForm.incidentLocation,
+          complaintType: complaintForm.complaintType,
+          description: complaintForm.description,
+        })
       })
-    }, 3000)
+      
+      // Since we're using no-cors, we can't read the response
+      // But we can assume it worked if no error was thrown
+      const timestamp = Date.now()
+      setCaseNumber(`LSPD-${timestamp}`)
+      setComplaintSubmitted(true)
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setComplaintSubmitted(false)
+        setCaseNumber("")
+        setComplaintForm({
+          complainantName: "",
+          complainantEmail: "",
+          complainantPhone: "",
+          officerName: "",
+          officerBadge: "",
+          incidentDate: "",
+          incidentLocation: "",
+          complaintType: "",
+          description: "",
+        })
+      }, 5000)
+      
+    } catch (error) {
+      setComplaintError('Failed to submit complaint. Please try again.')
+    } finally {
+      setComplaintLoading(false)
+    }
   }
 
-  const handlePermitSubmit = (e: React.FormEvent) => {
+  // Handle permit submission
+  const handlePermitSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log("Permit application submitted:", permitForm)
-    setPermitSubmitted(true)
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setPermitSubmitted(false)
-      setPermitForm({
-        applicantName: "",
-        applicantEmail: "",
-        applicantPhone: "",
-        permitType: "",
-        eventDate: "",
-        eventLocation: "",
-        eventDescription: "",
-        expectedAttendees: "",
-        duration: "",
+    setPermitLoading(true)
+    setPermitError("")
+    
+    try {
+      // Use your actual deployment URL here
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwH1E0-LlCfytvxezLxO5LUf9wqlwvMN8laKtA8x6vKr2n2AyyzlWBZW5QngMsJ2dL1/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          type: 'permit',
+          applicantName: permitForm.applicantName,
+          applicantEmail: permitForm.applicantEmail,
+          applicantPhone: permitForm.applicantPhone,
+          permitType: permitForm.permitType,
+          eventDate: permitForm.eventDate,
+          eventLocation: permitForm.eventLocation,
+          expectedAttendees: permitForm.expectedAttendees,
+          duration: permitForm.duration,
+          eventDescription: permitForm.eventDescription,
+        })
       })
-    }, 3000)
+      
+      // Since we're using no-cors, we can't read the response
+      // But we can assume it worked if no error was thrown
+      const timestamp = Date.now()
+      setApplicationNumber(`PERMIT-${timestamp}`)
+      setPermitSubmitted(true)
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setPermitSubmitted(false)
+        setApplicationNumber("")
+        setPermitForm({
+          applicantName: "",
+          applicantEmail: "",
+          applicantPhone: "",
+          permitType: "",
+          eventDate: "",
+          eventLocation: "",
+          eventDescription: "",
+          expectedAttendees: "",
+          duration: "",
+        })
+      }, 5000)
+      
+    } catch (error) {
+      setPermitError('Failed to submit permit application. Please try again.')
+    } finally {
+      setPermitLoading(false)
+    }
   }
 
   return (
@@ -92,9 +171,9 @@ export default function FormsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <FileText className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">LSPD Forms Portal</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">UPD Forms Portal</h1>
             <p className="text-xl text-blue-100">
-              Submit complaints, apply for permits, and access official LSPD forms and services
+              Submit complaints, apply for permits, and access official UPD forms and services
             </p>
           </div>
         </div>
@@ -126,7 +205,7 @@ export default function FormsPage() {
                       File a Complaint
                     </CardTitle>
                     <CardDescription>
-                      Report misconduct or file a complaint against an LSPD officer. All complaints are taken seriously
+                      Report misconduct or file a complaint against a UPD officer. All complaints are taken seriously
                       and investigated thoroughly.
                     </CardDescription>
                   </CardHeader>
@@ -135,16 +214,22 @@ export default function FormsPage() {
                       <div className="text-center py-8">
                         <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-green-600 mb-2">Complaint Submitted Successfully</h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 mb-4">
                           Your complaint has been received and assigned a case number. You will be contacted within 48
                           hours.
                         </p>
                         <Badge variant="outline" className="mt-4">
-                          Case #LSPD-{Math.floor(Math.random() * 10000)}
+                          Case #{caseNumber}
                         </Badge>
                       </div>
                     ) : (
                       <form onSubmit={handleComplaintSubmit} className="space-y-6">
+                        {complaintError && (
+                          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-700 text-sm">{complaintError}</p>
+                          </div>
+                        )}
+                        
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="complainantName">Your Full Name *</Label>
@@ -168,12 +253,13 @@ export default function FormsPage() {
                         </div>
 
                         <div>
-                          <Label htmlFor="complainantPhone">Phone Number</Label>
+                          <Label htmlFor="complainantPhone">Phone Number *</Label>
                           <Input
                             id="complainantPhone"
                             type="tel"
                             value={complaintForm.complainantPhone}
                             onChange={(e) => setComplaintForm({ ...complaintForm, complainantPhone: e.target.value })}
+                            required
                           />
                         </div>
 
@@ -251,8 +337,12 @@ export default function FormsPage() {
                           />
                         </div>
 
-                        <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">
-                          Submit Complaint
+                        <Button 
+                          type="submit" 
+                          className="w-full bg-red-600 hover:bg-red-700"
+                          disabled={complaintLoading}
+                        >
+                          {complaintLoading ? "Submitting..." : "Submit Complaint"}
                         </Button>
                       </form>
                     )}
@@ -315,16 +405,22 @@ export default function FormsPage() {
                         <h3 className="text-xl font-semibold text-green-600 mb-2">
                           Application Submitted Successfully
                         </h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 mb-4">
                           Your permit application has been received and is under review. You will be contacted within
                           5-7 business days.
                         </p>
                         <Badge variant="outline" className="mt-4">
-                          Application #PERMIT-{Math.floor(Math.random() * 10000)}
+                          Application #{applicationNumber}
                         </Badge>
                       </div>
                     ) : (
                       <form onSubmit={handlePermitSubmit} className="space-y-6">
+                        {permitError && (
+                          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-700 text-sm">{permitError}</p>
+                          </div>
+                        )}
+                        
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <Label htmlFor="applicantName">Full Name *</Label>
@@ -434,8 +530,12 @@ export default function FormsPage() {
                           />
                         </div>
 
-                        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                          Submit Application
+                        <Button 
+                          type="submit" 
+                          className="w-full bg-blue-600 hover:bg-blue-700"
+                          disabled={permitLoading}
+                        >
+                          {permitLoading ? "Submitting..." : "Submit Application"}
                         </Button>
                       </form>
                     )}
@@ -496,9 +596,9 @@ export default function FormsPage() {
                         Permit fees vary by type and will be communicated during the review process.
                       </p>
                     </div>
-                    <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                      <h4 className="font-semibold text-yellow-800 mb-2">Requirements</h4>
-                      <p className="text-sm text-yellow-700">
+                    <div className="p-4 bg-yellow-50 border border-green-200 rounded-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Requirements</h4>
+                      <p className="text-sm text-green-700">
                         Additional documentation may be required based on permit type.
                       </p>
                     </div>
