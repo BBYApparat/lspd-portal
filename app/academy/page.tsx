@@ -328,9 +328,9 @@ const academyPersonnel = [
   },
     {
     id: 72,
-    name: "Hugo Anderson",
+    name: "Hugo Andersson",
     rank: "Cadet",
-    badge: "625",
+    badge: "601",
     division: "Academy",
     status: "Training",
     image: "/placeholder.svg?height=100&width=100",
