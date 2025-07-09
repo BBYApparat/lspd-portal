@@ -26,7 +26,7 @@ const academyPersonnel = [
     badge: "579",
     division: "Academy",
     status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://i.imgur.com/RGeKvCJ.png",
   },
   {
     id: 39,

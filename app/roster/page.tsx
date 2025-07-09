@@ -120,7 +120,7 @@ const officers = [
     badge: "429",
     division: "Scene Supervisor",
     status: "Active",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "https://i.imgur.com/zBkChiP.png",
   },
   {
     id: 13,
