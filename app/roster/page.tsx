@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Search, Filter } from "lucide-react"
+import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog"
+import { DialogHeader } from "@/components/ui/dialog"
 
 // Real LSPD roster data
 const officers = [
@@ -340,323 +342,6 @@ const officers = [
     status: "Active",
     image: "/placeholder.svg?height=100&width=100",
   },
-  // Probationary Officers
-  {
-    id: 37,
-    name: "John Morgan",
-    rank: "Probationary Officer",
-    badge: "535",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 38,
-    name: "Oakley Neil Caesar",
-    rank: "Probationary Officer",
-    badge: "579",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 39,
-    name: "Tasos Nemak",
-    rank: "Probationary Officer",
-    badge: "508",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 40,
-    name: "Carmine Kingston",
-    rank: "Probationary Officer",
-    badge: "523",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 41,
-    name: "Eddie Garcia",
-    rank: "Probationary Officer",
-    badge: "511",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 42,
-    name: "Zedd McGlunk's",
-    rank: "Probationary Officer",
-    badge: "598",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  // Cadets
-  {
-    id: 43,
-    name: "Atzoun Tsampikos",
-    rank: "Cadet",
-    badge: "606",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 44,
-    name: "George Brown",
-    rank: "Cadet",
-    badge: "650",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 45,
-    name: "Sitsa Brown",
-    rank: "Cadet",
-    badge: "689",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 46,
-    name: "John Nolan",
-    rank: "Cadet",
-    badge: "655",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 47,
-    name: "Lee Chan",
-    rank: "Cadet",
-    badge: "696",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 48,
-    name: "John Pappas",
-    rank: "Cadet",
-    badge: "628",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 49,
-    name: "Arhs Aggeloudhs",
-    rank: "Cadet",
-    badge: "614",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 50,
-    name: "Mila Blake",
-    rank: "Cadet",
-    badge: "642",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 51,
-    name: "Jason Derek",
-    rank: "Cadet",
-    badge: "673",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 52,
-    name: "Kim Nilsson",
-    rank: "Cadet",
-    badge: "644",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 53,
-    name: "Popaye Vinkey",
-    rank: "Cadet",
-    badge: "634",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 54,
-    name: "Simon Riley",
-    rank: "Cadet",
-    badge: "620",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 55,
-    name: "Irina Stonekova",
-    rank: "Cadet",
-    badge: "633",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 56,
-    name: "Mpampis Vovos",
-    rank: "Cadet",
-    badge: "662",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 57,
-    name: "Nick Brown",
-    rank: "Cadet",
-    badge: "618",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 58,
-    name: "Rafael Duck",
-    rank: "Cadet",
-    badge: "632",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 59,
-    name: "Nick Banortas",
-    rank: "Cadet",
-    badge: "667",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 60,
-    name: "Paul Triggers",
-    rank: "Cadet",
-    badge: "651",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 61,
-    name: "Cecilia Black",
-    rank: "Cadet",
-    badge: "666",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 62,
-    name: "Martin Riggs",
-    rank: "Cadet",
-    badge: "624",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 63,
-    name: "Åke Olsson",
-    rank: "Cadet",
-    badge: "601",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 64,
-    name: "James Williams",
-    rank: "Cadet",
-    badge: "680",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 65,
-    name: "Steven Blacksmith",
-    rank: "Cadet",
-    badge: "613",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 66,
-    name: "Kaza Yura",
-    rank: "Cadet",
-    badge: "612",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 67,
-    name: "Erika-Liselotte Ghoebbels",
-    rank: "Cadet",
-    badge: "616",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 68,
-    name: "Jorge Garcia",
-    rank: "Cadet",
-    badge: "619",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 69,
-    name: "Elisavet Wick",
-    rank: "Cadet",
-    badge: "610",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 70,
-    name: "Valery Lorens",
-    rank: "Cadet",
-    badge: "661",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
-  {
-    id: 71,
-    name: "Faouzia Ouihya",
-    rank: "Cadet",
-    badge: "625",
-    division: "Academy",
-    status: "Training",
-    image: "/placeholder.svg?height=100&width=100",
-  },
 ]
 
 // Update rank order to match LSPD hierarchy
@@ -674,10 +359,98 @@ const rankOrder = {
   Cadet: 11,
 }
 
+interface Officer {
+  id: number
+  name: string
+  rank: string
+  badge: string
+  division: string
+  status: string
+  image: string
+}
+
+interface ImageModalProps {
+  isOpen: boolean
+  onClose: () => void
+  officer: Officer | null
+}
+
+function ImageModal({ isOpen, onClose, officer }: ImageModalProps) {
+  if (!officer) return null
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-lg">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-semibold">
+            {officer.name}
+          </DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="flex justify-center">
+            <div className="relative group">
+              <img
+                src={officer.image || "/placeholder.svg"}
+                alt={officer.name}
+                className="w-64 h-64 object-cover rounded-lg shadow-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.style.display = 'none'
+                }}
+              />
+              {/* Fallback display when image fails to load */}
+              <div className="w-64 h-64 bg-gray-200 rounded-lg flex items-center justify-center text-4xl font-bold text-gray-500">
+                {officer.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </div>
+            </div>
+          </div>
+          <div className="text-center space-y-2">
+            <Badge
+              variant={
+                officer.rank === "Chief of Police" || officer.rank === "Chief of LSPD"
+                  ? "default"
+                  : officer.rank === "Deputy Chief" || officer.rank === "Ass. Chief of LSPD"
+                    ? "secondary"
+                    : officer.rank === "Commander" || officer.rank === "Captain"
+                      ? "outline"
+                      : "secondary"
+              }
+            >
+              {officer.rank}
+            </Badge>
+            <div className="text-sm text-gray-600">
+              <div>Badge #{officer.badge}</div>
+              <div>{officer.division} Division</div>
+            </div>
+            <Badge variant={officer.status === "Active" ? "default" : "secondary"}>
+              {officer.status}
+            </Badge>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
 export default function RosterPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [rankFilter, setRankFilter] = useState("all")
   const [divisionFilter, setDivisionFilter] = useState("all")
+  const [selectedOfficer, setSelectedOfficer] = useState<Officer | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleImageClick = (officer: Officer) => {
+    setSelectedOfficer(officer)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedOfficer(null)
+  }
 
   const filteredOfficers = officers
     .filter((officer) => {
@@ -701,33 +474,34 @@ export default function RosterPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Department Roster</h1>
-            <p className="text-xl text-blue-100">Meet the dedicated officers and cadets serving Los Santos</p>
+            <p className="text-xl text-blue-100">
+              Meet the dedicated officers serving the Los Santos Police Department
+            </p>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Filters */}
+      <div className="container mx-auto px-4 py-8">
+        {/* Search and Filter */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Filter Roster
+              <Search className="h-5 w-5" />
+              Search & Filter Officers
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+          <CardContent className="space-y-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
                 <Input
-                  placeholder="Search by name or badge..."
+                  placeholder="Search by name or badge number..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="w-full"
                 />
               </div>
               <Select value={rankFilter} onValueChange={setRankFilter}>
-                <SelectTrigger>
+                <SelectTrigger className="w-full md:w-48">
                   <SelectValue placeholder="Filter by rank" />
                 </SelectTrigger>
                 <SelectContent>
@@ -740,7 +514,7 @@ export default function RosterPage() {
                 </SelectContent>
               </Select>
               <Select value={divisionFilter} onValueChange={setDivisionFilter}>
-                <SelectTrigger>
+                <SelectTrigger className="w-full md:w-48">
                   <SelectValue placeholder="Filter by division" />
                 </SelectTrigger>
                 <SelectContent>
@@ -761,15 +535,20 @@ export default function RosterPage() {
           {filteredOfficers.map((officer) => (
             <Card key={officer.id} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6 text-center">
-                <Avatar className="w-20 h-20 mx-auto mb-4">
-                  <AvatarImage src={officer.image || "/placeholder.svg"} alt={officer.name} />
-                  <AvatarFallback className="text-lg">
-                    {officer.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
+                <div 
+                  className="cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() => handleImageClick(officer)}
+                >
+                  <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-transparent hover:ring-blue-500">
+                    <AvatarImage src={officer.image || "/placeholder.svg"} alt={officer.name} />
+                    <AvatarFallback className="text-lg">
+                      {officer.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
                 <h3 className="font-semibold text-lg mb-2">{officer.name}</h3>
                 <div className="space-y-2">
                   <Badge
@@ -790,7 +569,7 @@ export default function RosterPage() {
                     <div>Badge #{officer.badge}</div>
                     <div>{officer.division} Division</div>
                   </div>
-                  <Badge variant={officer.status === "Active" ? "default" : "outline"} className="text-xs">
+                  <Badge variant={officer.status === "Active" ? "default" : "secondary"}>
                     {officer.status}
                   </Badge>
                 </div>
@@ -806,38 +585,14 @@ export default function RosterPage() {
             </CardContent>
           </Card>
         )}
-
-        {/* Statistics */}
-        <Card className="mt-12">
-          <CardHeader>
-            <CardTitle>Roster Statistics</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-blue-600">
-                  {officers.filter((o) => o.status === "Active").length}
-                </div>
-                <div className="text-sm text-gray-600">Active Officers</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-green-600">
-                  {officers.filter((o) => o.rank === "Cadet").length}
-                </div>
-                <div className="text-sm text-gray-600">Academy Cadets</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-purple-600">{divisions.length}</div>
-                <div className="text-sm text-gray-600">Divisions</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-orange-600">{officers.length}</div>
-                <div className="text-sm text-gray-600">Total Personnel</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        officer={selectedOfficer}
+      />
     </div>
   )
 }
