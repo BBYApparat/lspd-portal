@@ -70,7 +70,7 @@ export function Footer() {
                 <MapPin className="h-4 w-4 mt-1 text-yellow-400" />
                 <div className="text-sm text-gray-300">
                   <div>Mission Row Police Station</div>
-                  <div>1 Police Plaza</div>
+                  <div>Sinner Street, Atlee Street</div>
                   <div>Los Santos, SA 90028</div>
                 </div>
               </div>

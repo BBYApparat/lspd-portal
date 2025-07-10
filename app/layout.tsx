@@ -1,16 +1,17 @@
+// app/layout.tsx - Main UPD Layout
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+import { UPDNavigation } from "@/components/upd-navigation"
+import { UPDFooter } from "@/components/upd-footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "LSPD Portal - Los Santos Police Department",
+  title: "UPD Portal - Unified Police Department",
   description:
-    "Official portal for the Los Santos Police Department - Serving and Protecting the Citizens of Los Santos",
+    "Official portal for the Unified Police Department - Serving and Protecting Citizens Across All Jurisdictions",
     generator: 'v0.dev'
 }
 
@@ -22,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
+        <UPDNavigation />
         <main>{children}</main>
-        <Footer />
+        <UPDFooter />
       </body>
     </html>
   )
