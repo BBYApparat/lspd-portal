@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Shield, Phone, Mail, MapPin, Users, TreePine, Building, Handshake } from "lucide-react"
+import { Shield, Phone, Mail, MapPin, Users, Handshake } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -49,8 +49,8 @@ export default function PartnersPage() {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-green-100 rounded-full">
-                    <Shield className="h-8 w-8 text-green-600" />
+                  <div className="p-2 bg-white rounded-full shadow-md">
+                    <img src="/images/BCSO_Logo.png" alt="BCSO Badge" className="h-16 w-16 object-contain" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl text-green-700">Blaine County Sheriff's Office</CardTitle>
@@ -118,8 +118,8 @@ export default function PartnersPage() {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-100 rounded-full">
-                    <Building className="h-8 w-8 text-blue-600" />
+                  <div className="p-2 bg-white rounded-full shadow-md">
+                    <img src="/images/sasp_logo.png" alt="SASP Badge" className="h-16 w-16 object-contain" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl text-blue-700">San Andreas State Police</CardTitle>
@@ -187,8 +187,8 @@ export default function PartnersPage() {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-emerald-100 rounded-full">
-                    <TreePine className="h-8 w-8 text-emerald-600" />
+                  <div className="p-2 bg-white rounded-full shadow-md">
+                    <img src="/images/SASP-GTAV-RangerDetail.png" alt="Rangers Badge" className="h-16 w-16 object-contain" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl text-emerald-700">San Andreas Park Rangers</CardTitle>
