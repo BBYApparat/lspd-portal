@@ -20,15 +20,6 @@ const academyPersonnel = [
     image: "/placeholder.svg?height=100&width=100",
   },
   {
-    id: 38,
-    name: "Oakley Neil Caesar",
-    rank: "Probationary Officer",
-    badge: "579",
-    division: "Academy",
-    status: "Training",
-    image: "https://i.imgur.com/RGeKvCJ.png",
-  },
-  {
     id: 39,
     name: "Tasos Nemak",
     rank: "Probationary Officer",
