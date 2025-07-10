@@ -188,7 +188,7 @@ export default function PartnersPage() {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-white rounded-full shadow-md">
-                    <img src="/images/SASP-GTAV-RangerDetail.png" alt="Rangers Badge" className="h-16 w-16 object-contain" />
+                    <img src="/images/rangers.png" alt="Rangers Badge" className="h-16 w-16 object-contain" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl text-emerald-700">San Andreas Park Rangers</CardTitle>
