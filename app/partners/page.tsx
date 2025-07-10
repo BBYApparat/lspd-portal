@@ -119,7 +119,7 @@ export default function PartnersPage() {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-white rounded-full shadow-md">
-                    <img src="/images/sasp_logo.png" alt="SASP Badge" className="h-16 w-16 object-contain" />
+                    <img src="/images/sasp.png" alt="SASP Badge" className="h-16 w-16 object-contain" />
                   </div>
                   <div>
                     <CardTitle className="text-2xl text-blue-700">San Andreas State Police</CardTitle>
@@ -172,7 +172,7 @@ export default function PartnersPage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Mail className="h-4 w-4" />
-                  <span>dispatch@sasp.gov</span>
+                  <span>sasp@upd.gov</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <MapPin className="h-4 w-4" />
@@ -241,7 +241,7 @@ export default function PartnersPage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Mail className="h-4 w-4" />
-                  <span>rangers@sanparks.gov</span>
+                  <span>rangers@upd.gov</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <MapPin className="h-4 w-4" />
