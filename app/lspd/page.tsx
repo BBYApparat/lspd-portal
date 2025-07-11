@@ -56,7 +56,7 @@ export default function HomePage() {
                 size="lg"
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold transform hover:scale-105 transition-transform"
               >
-                <Link href="/roster">View Our Team</Link>
+                <Link href="/lspd/roster">View Our Team</Link>
               </Button>
               <Button
                 asChild
@@ -64,7 +64,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-blue-900 bg-transparent transform hover:scale-105 transition-transform"
               >
-                <Link href="/academy">Join the Academy</Link>
+                <Link href="/lspd/academy">Join the Academy</Link>
               </Button>
             </motion.div>
           </div>
@@ -191,28 +191,6 @@ export default function HomePage() {
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <Link href="/academy">
                     Academy Info <ChevronRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </AnimatedCard>
-
-            <AnimatedCard delay={0.4} className="hover:shadow-lg transition-shadow border-l-4 border-l-red-600">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <Scale className="h-8 w-8 text-red-600" />
-                  <div>
-                    <CardTitle>Penal Code</CardTitle>
-                    <CardDescription>Laws and regulations reference</CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Access the complete penal code sections and legal references used in our training.
-                </p>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <Link href="/penal-code">
-                    View Codes <ChevronRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardContent>

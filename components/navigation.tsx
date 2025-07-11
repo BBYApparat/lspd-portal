@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, Shield } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navigation = [
@@ -13,7 +13,6 @@ const navigation = [
   { name: "About", href: "/about" },
   { name: "Roster", href: "/roster" },
   { name: "Academy", href: "/academy" },
-  { name: "Partners", href: "/partners" },
   { name: "Penal Code", href: "/penal-code" },
   { name: "Gallery", href: "/gallery" },
   { name: "Forms", href: "/forms" },
@@ -28,8 +27,13 @@ export function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/lspd-logo.webp" alt="LSPD Logo" className="h-10 w-10 object-contain" />
-            <span className="text-xl font-bold text-gray-900">LSPD Portal</span>
+            <div className="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center">
+              <Shield className="h-6 w-6 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-gray-900">UPD Portal</span>
+              <span className="text-xs text-gray-500">United Police Department</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -58,6 +62,15 @@ export function Navigation() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col space-y-4 mt-8">
+                <div className="flex items-center space-x-2 mb-4 px-4">
+                  <div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center">
+                    <Shield className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-gray-900">UPD Portal</span>
+                    <span className="text-xs text-gray-500">United Police Department</span>
+                  </div>
+                </div>
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
